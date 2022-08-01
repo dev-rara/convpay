@@ -6,6 +6,7 @@ import com.zerobase.convpay.type.ConvenienceType;
 import com.zerobase.convpay.dto.PayRequest;
 import com.zerobase.convpay.dto.PayResponse;
 import com.zerobase.convpay.type.PayCancelResult;
+import com.zerobase.convpay.type.PayMethodType;
 import com.zerobase.convpay.type.PayResult;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ class ConveniencePayServiceTest {
     @Test
     void pay_success() {
         //given :어떤 데이터가 있을때
-        PayRequest payRequest = new PayRequest(ConvenienceType.G25, 50);
+        PayRequest payRequest = new PayRequest(PayMethodType.MONEY, ConvenienceType.G25, 50);
 
         //when : 어떤 동작을 하게 되면
         PayResponse payResponse = conveniencePayService.pay(payRequest);
@@ -28,9 +29,9 @@ class ConveniencePayServiceTest {
     }
 
     @Test
-    void pay_fails() {
+    void pay_fail() {
         //given :어떤 데이터가 있을때
-        PayRequest payRequest = new PayRequest(ConvenienceType.G25, 1000_001);
+        PayRequest payRequest = new PayRequest(PayMethodType.MONEY, ConvenienceType.G25, 1000_001);
 
         //when : 어떤 동작을 하게 되면
         PayResponse payResponse = conveniencePayService.pay(payRequest);
@@ -43,7 +44,7 @@ class ConveniencePayServiceTest {
     @Test
     void pay_cancel_success() {
         //given
-        PayCancelRequest payCancelRequest = new PayCancelRequest(ConvenienceType.G25, 1000);
+        PayCancelRequest payCancelRequest = new PayCancelRequest(PayMethodType.MONEY, ConvenienceType.G25, 1000);
 
         //when
         PayCancelResponse payCancelResponse = conveniencePayService.payCancel(payCancelRequest);
@@ -56,7 +57,7 @@ class ConveniencePayServiceTest {
     @Test
     void pay_cancel_fail() {
         //given
-        PayCancelRequest payCancelRequest = new PayCancelRequest(ConvenienceType.G25, 90);
+        PayCancelRequest payCancelRequest = new PayCancelRequest(PayMethodType.MONEY, ConvenienceType.G25, 90);
 
         //when
         PayCancelResponse payCancelResponse = conveniencePayService.payCancel(payCancelRequest);
