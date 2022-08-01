@@ -7,7 +7,7 @@ public class MoneyAdapter implements PaymentInterface {
     public MoneyUseResult use(Integer payAmount) {
         System.out.println("MoneyAdapter.use: " + payAmount);
 
-        if(payAmount > 1000_000) {   //금액이 너무 큰 경우 FAIL
+        if(payAmount > 1000_000) {   //금액이 너무 큰 경우 FAIL 로 가정
             return MoneyUseResult.USE_FAIL;
         }
         return MoneyUseResult.USE_SUCCESS;
@@ -16,7 +16,7 @@ public class MoneyAdapter implements PaymentInterface {
     public MoneyUseCancelResult useCancel(Integer payCancelAmount) {
         System.out.println("MoneyAdapter.useCancel: " + payCancelAmount);
 
-        if(payCancelAmount < 100 ) {   //금액이 너무 큰 경우 FAIL
+        if(payCancelAmount < 100 ) {   //금액이 너무 작은 경우 FAIL 로 가정
             return MoneyUseCancelResult.MONEY_USE_CANCEL_FAIL;
         }
         return MoneyUseCancelResult. MONEY_USE_CANCEL_SUCCESS;

@@ -3,7 +3,6 @@ package com.zerobase.convpay.service;
 import com.zerobase.convpay.type.*;
 
 public class CardAdapter implements PaymentInterface{
-
     // 1. 인증
     public void authorization() {
         System.out.println("authorization success.");

@@ -10,7 +10,6 @@ import java.util.Set;
 //편결이(편의점 결제서비스)
 //결제요청을 받아 결제응답 반환
 public class ConveniencePayService {
-    //한번 만들고 나면 바꿀일 없어 final 지정
     private final Map<PayMethodType, PaymentInterface> paymentInterfaceMap =
             new HashMap<>();
     private final DiscountInterface discountInterface;
