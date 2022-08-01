@@ -9,6 +9,8 @@ public class ConveniencePayService {
     //한번 만들고 나면 바꿀일 없어 final 지정
     private final MoneyAdapter moneyAdapter = new MoneyAdapter();
     private final CardAdapter cardAdapter = new CardAdapter();
+    private final DiscountInterface discountInterface = new DiscountByPayMethod();
+//    private final DiscountInterface discountInterface = new DiscountByConvenience();  //할인정책에 따라 사용
 
     public PayResponse pay(PayRequest payRequest) {
         PaymentInterface paymentInterface;
@@ -19,13 +21,14 @@ public class ConveniencePayService {
             paymentInterface = moneyAdapter;
         }
 
-        PaymentResult paymentResult = paymentInterface.payment(payRequest.getPayAmount());
+        Integer discountedAmount = discountInterface.getDiscountedAmount(payRequest);
+        PaymentResult paymentResult = paymentInterface.payment(discountedAmount);
 
 
         if(paymentResult == PaymentResult.PAYMENT_FAIL) {
             return new PayResponse(PayResult.FAIL, 0);
         }
-        return new PayResponse(PayResult.SUCCESS, payRequest.getPayAmount());
+        return new PayResponse(PayResult.SUCCESS, discountedAmount);
     }
 
     public PayCancelResponse payCancel(PayCancelRequest payCancelRequest) {
