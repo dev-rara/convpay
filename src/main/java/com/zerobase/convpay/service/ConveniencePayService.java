@@ -2,8 +2,7 @@ package com.zerobase.convpay.service;
 
 import com.zerobase.convpay.dto.*;
 import com.zerobase.convpay.type.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
